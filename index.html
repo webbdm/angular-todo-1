@@ -33,8 +33,31 @@
     </nav>
 
     <div ng-controller="ItemCtrl">
-      {{dog}}
-      {{24+5}}
+      <div class="row">
+        <div class="col-xs-6 col-xs-offset-3">
+          <button class="col-xs-6 btn btn-success" ng-click="newItem()">New Item</button>
+          <button class="col-xs-6 btn btn-warning" ng-click="allItems()">All Item</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-8 col-xs-offset-2">
+          <h1>NG Todo</h1>
+          <div ng-show="!showListView">
+            <h3>New Todo</h3>
+          </div>
+          <div ng-show="showListView">
+            <h3>Todo List</h3>
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
     </div>
 
     <!-- Third Party Scripts -->
