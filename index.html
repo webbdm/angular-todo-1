@@ -1,21 +1,94 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Angular Todo</title>
-    <!-- Third Party Styles -->
-    <link rel="stylesheet" href="./lib/bower_components/bootstrap/dist/css/bootstrap.css">
-    <!-- Personal Styles -->
-    <link rel="stylesheet" type="text/css" href="./styles/main.css">
 
-  </head>
-  <body>
-    <h1>Angular Todo</h1>
+<head>
+  <meta charset="utf-8">
+  <title>Angular Todo</title>
+  <!-- Third Party Styles -->
+  <link rel="stylesheet" href="./lib/bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Personal Styles -->
+  <link rel="stylesheet" type="text/css" href="./styles/main.css">
+</head>
 
-    <!-- Third Party Scripts -->
-    <script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>
-    <script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-    <!-- Personal Scripts -->
-    <script type="text/javascript" src="./javascripts/main.js"></script>
-  </body>
+<body ng-app="TodoApp">
+  <nav class="navbar navbar-default" ng-controller="NavCtrl">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">Brand</a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right" ng-repeat="thingy in navItems">
+          <li><a href="#">{{thingy.name}}</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+  </nav>
+  <div ng-controller="ItemCtrl">
+    <div class="row">
+      <div class="col-xs-6 col-xs-offset-3">
+        <button class="col-xs-6 btn btn-success" ng-click="newItem()">New Item</button>
+        <button class="col-xs-6 btn btn-warning" ng-click="allItems()">All Item</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-8 col-xs-offset-2">
+        <h1>NG Todo</h1>
+        <div ng-show="!showListView">
+          <h3>New Todo</h3>
+        </div>
+        <div ng-show="showListView">
+          <input type="text" name="" placeholder="Search for ......." ng-model="searchText">
+          <h3>Todo</h3>
+          <div ng-repeat="item in items | filter:{isCompleted:false} | filter: searchText">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="col-xs-1">
+                  <input type="checkbox" name="" ng-checked="item.isCompleted"/>
+                </div>
+                <div class="col-xs-7">{{item.task}}</div>
+                <div class="col-xs-1 col-xs-offset-2">{{item.assignedTo}}</div>
+                <div class="col-xs-1">
+                  <button class="btn btn-danger fa fa-trash-o"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <h3>Completed</h3>
+          <div ng-repeat="item in items | filter:{isCompleted:true}">
+            <div class="panel panel-default">
+              <div class="panel-body">
+                <div class="col-xs-1">
+                  <input type="checkbox" name="" ng-checked="item.isCompleted"/>
+                </div>
+                <div class="col-xs-7">{{item.task}}</div>
+                <div class="col-xs-1  col-xs-offset-2">{{item.assignedTo}}</div>
+                <div class="col-xs-1">
+                  <button class="btn btn-danger fa fa-trash-o"></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Third Party Scripts -->
+  <script type="text/javascript" src="./lib/bower_components/jquery/dist/jquery.js"></script>
+  <script type="text/javascript" src="./lib/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script type="text/javascript" src="./lib/bower_components/angular/angular.min.js"></script>
+  <!-- Personal Scripts -->
+  <script type="text/javascript" src="./javascripts/main.js"></script>
+</body>
+
 </html>
