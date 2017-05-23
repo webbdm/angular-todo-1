@@ -1,8 +1,8 @@
 app.factory("ItemFactory", function($q, $http, FIREBASE_CONFIG){
-	let getItemList = () => {
+	let getItemList = (userId) => {
 		let itemz = [];
 		return $q((resolve, reject) => {
-			$http.get(`${FIREBASE_CONFIG.databaseURL}/items.json`)
+			$http.get(`${FIREBASE_CONFIG.databaseURL}/items.json?orderBy="uid"&equalTo="${userId}"`)
 				.then((fbItems) => {
 					let itemCollection = fbItems.data;
           if(itemCollection !== null ){
@@ -59,7 +59,8 @@ app.factory("ItemFactory", function($q, $http, FIREBASE_CONFIG){
 				JSON.stringify({
 					assignedTo: item.assignedTo,
 					isCompleted: item.isCompleted,
-					task: item.task
+					task: item.task,
+					uid: item.uid
 				})
 				).then((resultz) => {
 					resolve(resultz);
