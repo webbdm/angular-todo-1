@@ -2,6 +2,7 @@ app.controller("ItemListCtrl", function($rootScope, $scope, ItemFactory) {
     $scope.items = [];
 
     let getItems = () => {
+        console.log($rootScope.user);
         ItemFactory.getItemList($rootScope.user.uid).then((itemz) => {
             $scope.items = itemz;
         }).catch((error) => {

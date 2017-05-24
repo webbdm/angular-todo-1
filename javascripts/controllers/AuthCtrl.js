@@ -5,6 +5,8 @@ app.controller("AuthCtrl", function($location, $rootScope, $scope, AuthFactory, 
         // password: "aaaaaa"
     };
 
+    $scope.alerts = [];
+
     if($location.path() === '/logout'){
     	AuthFactory.logout();
     	$rootScope.user = {};
@@ -14,10 +16,9 @@ app.controller("AuthCtrl", function($location, $rootScope, $scope, AuthFactory, 
     let logMeIn = () => {
         AuthFactory.authenticate($scope.auth).then((userCreds) => {
             return UserFactory.getUser(userCreds.uid);
-        }).catch((error) => {
-            console.log("authenticate error", error);
+        },(error) => {
+            $scope.alerts.push({msg: error.message});
         }).then((user) => {
-            console.log("user", user);
             $rootScope.user = user;
             $location.url('/items/list');
         }).catch((error) => {
