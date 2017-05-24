@@ -13,8 +13,8 @@
 
 <body ng-app="TodoApp">
   <div ng-include="'partials/navbar.html'"></div>
-  <div class="row">
-    <h1>NG Todo</h1>
+  <div class="row text">
+    <h1>NG Todo<br><img src="https://angular.io/resources/images/logos/angular/angular.png"></h1>
     <div class="col-xs-8 col-xs-offset-2" ng-view>
       
     </div>
@@ -34,8 +34,12 @@
   <script type="text/javascript" src="./javascripts/AppConfig.js"></script>
   <script type="text/javascript" src="./javascripts/AppConstants.js"></script>
 
+  <script type="text/javascript" src="./javascripts/factories/UserFactory.js"></script>
+  <script type="text/javascript" src="./javascripts/factories/AuthFactory.js"></script>
   <script type="text/javascript" src="./javascripts/factories/ItemFactory.js"></script>
+  
 
+  <script type="text/javascript" src="./javascripts/controllers/AuthCtrl.js"></script>
   <script type="text/javascript" src="./javascripts/controllers/NavCtrl.js"></script>
   <script type="text/javascript" src="./javascripts/controllers/ItemEditCtrl.js"></script>
   <script type="text/javascript" src="./javascripts/controllers/ItemListCtrl.js"></script>
