@@ -1,12 +1,18 @@
 <h3>New Todo</h3>
 <form>
-  <div class="form-group">
-    <label>Task Description</label>
-    <input type="text" class="form-control" placeholder="Some important task" ng-model="newTask.task" />
-  </div>
-  <div class="form-group">
-    <label>Assigned To</label>
-    <input type="text" class="form-control" placeholder="Zoe" ng-model="newTask.assignedTo" />
-  </div>
-  <button class="btn btn-default" ng-click="addNewItem()">Submit</button>
+    <div class="form-group">
+        <label>Task Description</label>
+        <input type="text" class="form-control" placeholder="Some important task" ng-model="newTask.task" />
+    </div>
+    <div class="form-group">
+        <label>Assigned To</label>
+        <input type="text" class="form-control" placeholder="Zoe" ng-model="newTask.assignedTo" />
+    </div>
+    <p class="input-group">
+        <input type="date" class="form-control" uib-datepicker-popup ng-model="newTask.dueDate" is-open="isOpened2" min-date="minDate" max-date="maxDate" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+        <span class="input-group-btn">
+      <button type="button" class="btn btn-default" ng-click="isOpened2 = !isOpened2"><i class="glyphicon glyphicon-calendar"></i></button>
+    </span>
+    </p>
+    <button class="btn btn-default" ng-click="addNewItem()">Submit</button>
 </form>
