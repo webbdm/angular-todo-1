@@ -1,9 +1,9 @@
 let isAuth = (AuthFactory) => new Promise ((resolve, reject) => {
   if(AuthFactory.isAuthenticated()){
-    // console.log("User is authenticated, resolve route promise");
+    //console.log("User is authenticated, resolve route promise");
     resolve();
   } else {
-    // console.log("User is not authenticated, reject route promise");
+    //console.log("User is not authenticated, reject route promise");
     reject();
   }
 });
@@ -41,7 +41,8 @@ app.config(function($routeProvider) {
     $routeProvider
         .when('/auth', {
             templateUrl: 'partials/auth.html',
-            controller: 'AuthCtrl'
+            controller: 'AuthCtrl',
+            resolve: {isAuth}
         })
         .when('/items/list', {
             templateUrl: 'partials/item-list.html',
